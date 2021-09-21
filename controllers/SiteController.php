@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Author;
 use app\models\Book;
+use Faker\Factory;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -11,6 +12,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -63,10 +65,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $booklist = Book::find()->innerJoin('Author', 'Author.id = Book.Author')->all();
-        $authorlist = Author::find()->all();
-        return $this->render('index', ['bookList' => $booklist, 'authorList' => $authorlist]);
+//        $booklist = Book::find()->innerJoin('Author', 'Author.id = Book.Author')->all();
+//        $authorlist = Author::find()->all();
+//        return $this->render('index', ['bookList' => $booklist, 'authorList' => $authorlist]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Book::find(),
+            'pagination' => [
+                'pageSize' => 50,
+            ],
+        ]);
+        return $this->render('index', ['dataProvider' => $dataProvider]);
+
     }
+
 
     /**
      * Login action.
@@ -129,5 +141,18 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    /*public function actionGener(){
+        $faker = Factory::create();
+
+        for ($i=0; $i<100; $i++){
+            $book = new Author();
+            $book->Last_name = $faker->lastName();
+            $book->First_name = $faker->firstName();
+            $book->Number_of_books = rand(1,15);
+            $book->save(false);
+        }
+        return 123;
+    }*/
 
 }

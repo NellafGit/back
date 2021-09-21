@@ -12,7 +12,6 @@ use yii\widgets\ActiveForm;
 
 <?php echo $form->field($model, 'Title'); ?>
 
-<?php echo $form->field($model, 'Author'); ?>
 
 
 <?php echo Html::submitButton('Add', [

@@ -58,10 +58,15 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-
-
-            ],
+            'rules' => array(
+                '<prefix:.+/>/<controller:\w+>/by-id/<id:\d+>' => '<prefix><controller>/byId',
+                '<controller:\w+>/<id:\d+>' => '<controller>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\d+>' => '<controller>/<action>',
+                '<prefix:.+/><controller:\w+>/<id:\d+>' => '<prefix><controller>',
+                '<prefix:.+/>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<prefix><controller>/<action>',
+                '<prefix:.+/><controller:\w+>/<action:\d+>' => '<prefix><controller>/<action>',
+            ),
         ],
 
     ],

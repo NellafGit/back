@@ -11,10 +11,6 @@ use yii\widgets\ActiveForm;
 <?php $form = ActiveForm::begin(); ?>
 <?php echo $form->field($model, 'Title'); ?>
 
-<?php echo $form->field($model, 'Author'); ?>
-
-
-
 <?php echo Html::submitButton('Изменить', [
     'class' => 'btn btn-primary'
 ]); ?>

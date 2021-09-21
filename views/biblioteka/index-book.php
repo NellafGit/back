@@ -17,14 +17,16 @@ use yii\helpers\Url;
             <th></th>
             <th><a href="<?php echo Url::to(['biblioteka/create-book']); ?>" class="btn btn-primary"> Добавить книгу </a></th>
         </tr>
-        <?php foreach ($bookList as $author): ?>
+        <?php foreach ($bookList as $books): ?>
             <tr>
                 <td></td>
-                <td><?php echo $author->Title; ?></td>
-                <td><?php echo $author->author->Last_name. " ". $author->author->First_name;  ?></td>
+                <td><?php echo $books->Title; ?></td>
+                <td><?php foreach ($books->authors as $author) {
+                    echo $author->First_name . ' ' . $author->Last_name;
+                    }?></td>
 
-                <td><a href="<?php echo Url::to(['biblioteka/update-book', 'id' => $author->id]); ?>">Изменить</a> </td>
-                <td><a href="<?php echo Url::to(['biblioteka/delete-book', 'id' => $author->id]); ?>">Удалить</a> </td>
+                <td><a href="<?php echo Url::to(['biblioteka/update-book', 'id' => $books->id]); ?>">Изменить</a> </td>
+                <td><a href="<?php echo Url::to(['biblioteka/delete-book', 'id' => $books->id]); ?>">Удалить</a> </td>
             </tr>
         <?php endforeach;?>
     </table>

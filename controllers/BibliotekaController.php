@@ -19,7 +19,7 @@ class BibliotekaController extends \yii\web\Controller
                },
                'rules' => [
                    [
-                       //'actions' => ['index-book', 'index-author', 'create-author', 'create-book', 'update-book', 'update-author', 'delete-author', 'delete-book'],
+                       'actions' => ['index-book', 'index-author', 'create-author', 'create-book', 'update-book', 'update-author', 'delete-author', 'delete-book'],
                        'allow' => true,
                        'roles' => ['admin'],
                    ],
@@ -48,9 +48,8 @@ class BibliotekaController extends \yii\web\Controller
 
     public function actionIndexBook()
     {
-        $booklist = Book::find()->innerJoin('Author', 'Author.id = Book.Author')->all();
-        $authorlist = Author::find()->all();
-        return $this->render('index-book', ['bookList' => $booklist, 'authorList' => $authorlist]);
+       $booklist = Book::find()->all();
+       return $this->render('index-book', ['bookList' => $booklist]);
     }
 
     public function actionCreateBook()

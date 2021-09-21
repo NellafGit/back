@@ -81,4 +81,9 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+
+
+}
+.CustomHeadClass {
+    color: #000000;
 }

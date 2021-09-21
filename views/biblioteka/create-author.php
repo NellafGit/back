@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 <?php echo $form->field($model, 'Last_name'); ?>
 <?php echo $form->field($model, 'First_name'); ?>
-<?php echo $form->field($model, 'Number_of_books'); ?>
+
 
 
 <?php echo Html::submitButton('Add', [

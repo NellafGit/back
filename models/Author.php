@@ -9,16 +9,20 @@ class Author extends ActiveRecord
     {
         return 'Author';
     }
-    public function  getBook()
+    public function  getBooks()
     {
-        return $this->hasOne(Book::class, ['Author'=> 'id']);
+        return $this->hasMany(Book::class, ['id'=> 'Book_id'])
+            ->viaTable('Svyaz', ['Author_id' => 'id']);
+
     }
     public function rules()
     {
         return [
-            [['Last_name', 'First_name', 'Number_of_books'], 'required']
+            [['Last_name', 'First_name'], 'required']
 
         ];
 
     }
+
+
 }

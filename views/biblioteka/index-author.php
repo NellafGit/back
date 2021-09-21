@@ -14,18 +14,21 @@ use yii\helpers\Url;
             <th></th>
             <th>Фамилия</th>
             <th>Имя</th>
-            <th>Кол-во книг</th>
+            <th>Книги</th>
             <th></th>
             <th><a href="<?php echo Url::to(['biblioteka/create-author']); ?>" class="btn btn-primary"> Добавить Автора </a></th>
         </tr>
-        <?php foreach ($authorList as $author): ?>
+        <?php foreach ($authorList as $authors): ?>
             <tr>
                 <td></td>
-                <td><?php echo $author->Last_name; ?></td>
-                <td><?php echo $author->First_name;  ?></td>
-                <td><?php echo $author->Number_of_books;  ?></td>
-                <td><a href="<?php echo Url::to(['biblioteka/update-author', 'id' => $author->id]); ?>">Изменить</a> </td>
-                <td><a href="<?php echo Url::to(['biblioteka/delete-author', 'id' => $author->id]); ?>">Удалить</a> </td>
+                <td><?php echo $authors->Last_name; ?></td>
+                <td><?php echo $authors->First_name;  ?></td>
+                <td><?php foreach ($authors->books as $book){
+
+                    echo  $book->Title . '<br>';
+                    } ?></td>
+                <td><a href="<?php echo Url::to(['biblioteka/update-author', 'id' => $authors->id]); ?>">Изменить</a> </td>
+                <td><a href="<?php echo Url::to(['biblioteka/delete-author', 'id' => $authors->id]); ?>">Удалить</a> </td>
             </tr>
         <?php endforeach;?>
     </table>
