@@ -38,6 +38,13 @@ use yii\grid\GridView;
     'dataProvider' => $dataProvider,
     'columns' => [
         'Title' ,
+        ['content' => function ($data){
+        $authors = '';
+        foreach ($data->authors as $author){
+            $authors .=  $author->Last_name;
+        }
+        return $authors;
+    }],
         ['attribute' => 'role_id','label' => 'Роль'],
         ],
 ]);

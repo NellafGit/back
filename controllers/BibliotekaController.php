@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Author;
 use app\models\Book;
+use app\models\Svyaz;
 use Yii;
 use yii\filters\AccessControl;
 
@@ -55,12 +56,21 @@ class BibliotekaController extends \yii\web\Controller
     public function actionCreateBook()
     {
         $model = new Book();
-        if ($model->load(Yii::$app->request->post()) && $model->save()){
-            Yii::$app->session->setFlash('success', 'Book added');
-            return $this->redirect(['biblioteka/index-book']);
+        $svyaz = new Svyaz();
+
+        if ($model->load(Yii::$app->request->post()) && $svyaz->load(Yii::$app->request->post())){
+            $isValid = $model->validate();
+            $isValid = $svyaz->validate() && $isValid;
+            if($isValid){
+                $model->save(true);
+                $svyaz->save(true);
+                Yii::$app->session->setFlash('success', 'Book added');
+                return $this->redirect(['biblioteka/index-book']);
+            }
+
         }
         return $this->render('create-book',[
-            'model' => $model,
+            'model' => $model, 'svyaz' => $svyaz
         ]);
     }
 

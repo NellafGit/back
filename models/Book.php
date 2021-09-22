@@ -4,7 +4,8 @@ namespace app\models;
 use yii\db\ActiveRecord;
 class Book extends ActiveRecord
 
-{
+{   public $Author_id;
+    public $Book_id;
     public static function tableName()
     {
         return 'Book';
@@ -23,6 +24,18 @@ class Book extends ActiveRecord
         ];
 
     }
+//    protected function afterSave(){
+//        parent::afterSave();
+//        if($this->isNewRecord){
+//            $book = new Svyaz();
+//            $book->Author_id = $this->Author_id;
+//            $book->Book_id = $this->id;
+//            $book->save();
+//        } else {
+//            Svyaz::model()->updateAll(array('Book_id' => $this->id,
+//                'Author_id' => $this->Author_id), 'Book_id=:Book_id', array(':Book_id'=>$this->id));
+//        }
+//    }
 
 
 }

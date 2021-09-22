@@ -68,14 +68,17 @@ class SiteController extends Controller
 //        $booklist = Book::find()->innerJoin('Author', 'Author.id = Book.Author')->all();
 //        $authorlist = Author::find()->all();
 //        return $this->render('index', ['bookList' => $booklist, 'authorList' => $authorlist]);
-
+        $booklist = Book::find()->all();
         $dataProvider = new ActiveDataProvider([
             'query' => Book::find(),
             'pagination' => [
                 'pageSize' => 50,
             ],
         ]);
-        return $this->render('index', ['dataProvider' => $dataProvider]);
+
+
+
+        return $this->render('index', [ 'bookList' => $booklist, 'dataProvider' => $dataProvider]);
 
     }
 
