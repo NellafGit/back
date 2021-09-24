@@ -138,7 +138,7 @@ class SiteController extends Controller
    public function actionAdmin(){
        $userRole = Yii::$app->authManager->getRole('admin');
        Yii::$app->authManager->assign($userRole, Yii::$app->user->getId());
-       return 'Ready';
+       return $this->render('index');
    }
     /*public function actionGener(){
         $faker = Factory::create();
