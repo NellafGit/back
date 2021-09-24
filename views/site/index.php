@@ -37,14 +37,17 @@ use yii\grid\GridView;
      ],
     'dataProvider' => $dataProvider,
     'columns' => [
-        'Title' ,
+        ['class' => \yii\grid\DataColumn::class,
+           'attribute' => 'Title',
+            'label' => 'Название'],
         ['content' => function ($data){
         $authors = '';
         foreach ($data->authors as $author){
-            $authors .=  $author->Last_name . ' ' . $author->First_name;
+            $authors .=$author->Last_name . ' ' . $author->First_name . '<br>';
         }
         return $authors;
-    }],
+    },
+    'label' => 'Автор'],
         ],
 ]);
 ?>

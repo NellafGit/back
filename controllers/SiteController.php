@@ -68,9 +68,9 @@ class SiteController extends Controller
 //        $booklist = Book::find()->innerJoin('Author', 'Author.id = Book.Author')->all();
 //        $authorlist = Author::find()->all();
 //        return $this->render('index', ['bookList' => $booklist, 'authorList' => $authorlist]);
-        $booklist = Book::find()->all();
+//        $booklist = Book::find()->where(['Status' => 1])->all();
         $dataProvider = new ActiveDataProvider([
-            'query' => Book::find(),
+            'query' => Book::find()->where(['Status' => 1]),
             'pagination' => [
                 'pageSize' => 50,
             ],
@@ -78,7 +78,7 @@ class SiteController extends Controller
 
 
 
-        return $this->render('index', [ 'bookList' => $booklist, 'dataProvider' => $dataProvider]);
+        return $this->render('index', [ 'dataProvider' => $dataProvider]);
 
     }
 
@@ -135,16 +135,11 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbove()
-    {
-        return $this->render('about');
-    }
-
+   public function actionAdmin(){
+       $userRole = Yii::$app->authManager->getRole('admin');
+       Yii::$app->authManager->assign($userRole, Yii::$app->user->getId());
+       return 'Ready';
+   }
     /*public function actionGener(){
         $faker = Factory::create();
 

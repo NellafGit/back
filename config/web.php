@@ -59,7 +59,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => array(
-                '<prefix:.+/>/<controller:\w+>/<action:\d+>' => '<prefix><controller>/list?expand=authors',
+//                '<prefix:.+/>/<controller:\w+>/<action:\d+>' => '<prefix><controller>/list?expand=authors',
                 '<prefix:.+/>/<controller:\w+>/id/<id:\d+>' => '<prefix><controller>',
                 '<controller:\w+>/<id:\d+>' => '<controller>',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
