@@ -4,6 +4,6 @@
 <h1>biblioteka/delete-book</h1>
 
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
+<?php //foreach ($svyaz as $st); print_r($st->Status) ?>
+<?php print_r($svyaz->Status) ?>
 </p>

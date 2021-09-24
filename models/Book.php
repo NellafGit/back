@@ -16,6 +16,14 @@ class Book extends ActiveRecord
             ->viaTable('Svyaz', ['Book_id' => 'id']);
 
     }
+
+    public function getArraySelectedAuthors(){
+        $result = [];
+        foreach ($this->authors as $author){
+            $result[$author->id] = ['selected' => true];
+        }
+        return $result;
+    }
     public function rules()
     {
         return [
@@ -23,6 +31,11 @@ class Book extends ActiveRecord
 
         ];
 
+    }
+
+    public function fields()
+    {
+        return ['authors', 'Title'];
     }
 //    protected function afterSave(){
 //        parent::afterSave();

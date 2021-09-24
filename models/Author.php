@@ -2,6 +2,8 @@
 
 namespace app\models;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
+
 class Author extends ActiveRecord
 
 {
@@ -15,6 +17,12 @@ class Author extends ActiveRecord
             ->viaTable('Svyaz', ['Author_id' => 'id']);
 
     }
+
+    static public function getArray(){
+        $author=ArrayHelper::map(self::find()->asArray()->all(), 'id', 'Last_name');
+        return $author;
+    }
+
     public function rules()
     {
         return [

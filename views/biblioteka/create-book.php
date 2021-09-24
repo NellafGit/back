@@ -14,7 +14,7 @@ use app\models\Book;
 <?php $form = ActiveForm::begin(); ?>
 
 <?php echo $form->field($model, 'Title'); ?>
-<?php echo $form->field($svyaz, 'Author_id')->dropDownList(Author::find()->select(['First_name'])->column(), ['prompt' => 'Vibor']) ?>
+<?php echo $form->field($svyaz, 'Author_id')->dropDownList(Author::getArray(), ['prompt' => 'Vibor', 'multiple' => 'true']) ?>
 
 <?php //echo $form->field($model, 'Title')->dropDownList(Author::find()->select(['First_name'])->column(),
 //['prompt' => 'Выберите Автора']);   ?>

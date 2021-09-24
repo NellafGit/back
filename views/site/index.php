@@ -41,11 +41,10 @@ use yii\grid\GridView;
         ['content' => function ($data){
         $authors = '';
         foreach ($data->authors as $author){
-            $authors .=  $author->Last_name;
+            $authors .=  $author->Last_name . ' ' . $author->First_name;
         }
         return $authors;
     }],
-        ['attribute' => 'role_id','label' => 'Роль'],
         ],
 ]);
 ?>

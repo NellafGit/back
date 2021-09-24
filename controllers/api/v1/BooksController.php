@@ -39,27 +39,28 @@ class BooksController extends ActiveController
 
     public function actionBy($id)
     {
-        $model = Book::findOne($id);
+        $model = Book::find()->where(['id' => $id, ])->joinWith('authors')->one();
         return $model;
     }
 
     public function actionUpdate($id)
     {
-        $model = Book::findOne($id);
+        $model = Book::findOne($id)->where(['Status' => 1])->joinWith('authors');
         $model->load(Yii::$app->request->post()) && $model->save();
         return $model;
     }
 
     public function actionList()
     {
-        $model = Book::find()->joinWith('author')->all();;
+        $model = Book::find()->where(['Status' => 1])->joinWith( 'authors'  )->all();
         return $model;
     }
 
     public function actionId($id)
     {
         $model = Book::findOne($id);
-        $model->delete();
+        $model->Status = 0;
+        $model->save();
         return $model;
     }
 

@@ -49,30 +49,33 @@ class BibliotekaController extends \yii\web\Controller
 
     public function actionIndexBook()
     {
-       $booklist = Book::find()->all();
-       return $this->render('index-book', ['bookList' => $booklist]);
+       $booklist = Book::find()->where(['Status' => 1])->all();
+       return $this->render('index-book', ['bookList' => $booklist ]);
     }
 
     public function actionCreateBook()
     {
         $model = new Book();
         $svyaz = new Svyaz();
+        if ($model->load(Yii::$app->request->post()) && $model->save() ){
 
-        if ($model->load(Yii::$app->request->post()) && $svyaz->load(Yii::$app->request->post())){
-            $isValid = $model->validate();
-            $isValid = $svyaz->validate() && $isValid;
-            if($isValid){
-                $model->save(true);
-                $svyaz->save(true);
+            $post = Yii::$app->request->post('Svyaz');
+            foreach ($post['Author_id'] as $author){
+                $svyaz = new Svyaz();
+                $svyaz->Book_id = $model->id;
+                $svyaz->Author_id = $author;
+                $svyaz->save();
+            }
+
                 Yii::$app->session->setFlash('success', 'Book added');
                 return $this->redirect(['biblioteka/index-book']);
             }
 
-        }
+
         return $this->render('create-book',[
             'model' => $model, 'svyaz' => $svyaz
         ]);
-    }
+}
 
     public function actionDeleteAuthor($id)
     {
@@ -84,9 +87,12 @@ class BibliotekaController extends \yii\web\Controller
 
     public function actionDeleteBook($id)
     {
-        $model = Book::findOne($id);
-        $model->delete();
+        $svyaz = Book::findOne($id);
+        $svyaz->Status = 0;
+        $svyaz->save();
+
         Yii::$app->session->setFlash('success', 'Book deleted');
+//        return $this->render('delete-book' , ['svyaz' => $svyaz] );
         return $this->redirect(['biblioteka/index-book']);
     }
 
@@ -105,14 +111,28 @@ class BibliotekaController extends \yii\web\Controller
 
     public function actionUpdateBook($id)
     {
+        $sv = new Svyaz();
         $model = Book::findOne($id);
+//        var_dump($model->getArraySelectedAuthors());die();
+        $svyaz = Svyaz::find()->where(['Book_id' => $id])->one();
+        if ($model->load(Yii::$app->request->post()) && $model->save() ){
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()){
-            Yii::$app->session->setFlash('success', 'Book updated');
+            $post = Yii::$app->request->post('Svyaz');
+            Svyaz::deleteAll(['Book_id' => $model->id]);
+            foreach ($post['Author_id'] as $author){
+                $svyaz = new Svyaz();
+                $svyaz->Book_id = $model->id;
+                $svyaz->Author_id = $author;
+                $svyaz->save();
+            }
+
+            Yii::$app->session->setFlash('success', 'Book added');
             return $this->redirect(['biblioteka/index-book']);
         }
-        return $this->render('update-book' , [
-            'model' => $model,
+
+
+        return $this->render('update-book',[
+            'model' => $model, 'svyaz' => $sv,
         ]);
     }
 
