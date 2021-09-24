@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a973addecfa2040a73918abda938727c",
+    "content-hash": "4a8ca2a35d656a96707931c38bbe469a",
     "packages": [
         {
             "name": "bower-asset/inputmask",
@@ -2066,6 +2066,60 @@
                 "source": "https://github.com/guzzle/psr7/tree/2.0.0"
             },
             "time": "2021-06-30T20:03:07+00:00"
+        },
+        {
+            "name": "insolita/yii2-migration-generator",
+            "version": "3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Insolita/yii2-migrik.git",
+                "reference": "f7584aba1d0d0879f566189812c988b4fc7f2cb8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Insolita/yii2-migrik/zipball/f7584aba1d0d0879f566189812c988b4fc7f2cb8",
+                "reference": "f7584aba1d0d0879f566189812c988b4fc7f2cb8",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": ">=2.0.14"
+            },
+            "require-dev": {
+                "yiisoft/yii2-gii": "*"
+            },
+            "suggest": {
+                "nesbot/carbon": "for testing ",
+                "vlucas/phpdotenv": "for testing"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "insolita\\migrik\\Bootstrap"
+            },
+            "autoload": {
+                "psr-4": {
+                    "insolita\\migrik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "insolita",
+                    "email": "donnainsolita@gmail.com"
+                }
+            ],
+            "description": "Set of gii tools for generating  files for migration by schema of table , phpdoc or table data",
+            "keywords": [
+                "extension",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/Insolita/yii2-migrik/issues",
+                "source": "https://github.com/Insolita/yii2-migrik/tree/3.2"
+            },
+            "time": "2019-07-26T10:58:40+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -5150,6 +5204,51 @@
                 }
             ],
             "time": "2021-07-28T10:34:58+00:00"
+        },
+        {
+            "name": "tmukherjee13/yii2-reverse-migration",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tmukherjee13/yii2-reverse-migration.git",
+                "reference": "56ff81b7652278485c792bd58e35ba1c4eb93edd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tmukherjee13/yii2-reverse-migration/zipball/56ff81b7652278485c792bd58e35ba1c4eb93edd",
+                "reference": "56ff81b7652278485c792bd58e35ba1c4eb93edd",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": ">2.0.6"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "tmukherjee13\\migration\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tarun Mukherjee",
+                    "email": "tmukherjee13@gmail.com"
+                }
+            ],
+            "description": "Generate working migration classes from existing Database",
+            "keywords": [
+                "database",
+                "migration",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/tmukherjee13/yii2-reverse-migration/issues",
+                "source": "https://github.com/tmukherjee13/yii2-reverse-migration/tree/2.4.0"
+            },
+            "time": "2021-07-24T13:46:30+00:00"
         },
         {
             "name": "webmozart/assert",

@@ -18,6 +18,7 @@ $config = [
             'class' => 'yii\rbac\DbManager',
             'cache' => 'cache' //Включаем кеширование
         ],
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -32,13 +33,17 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
-    /*
+
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
             'class' => 'yii\faker\FixtureController',
         ],
+        'migration' => [
+            'class' => 'tmukherjee13\migration\console\controllers\MigrationController',
+            'templateFile' => '@tmukherjee13/migration/views/template.php',
+        ],
     ],
-    */
+
 ];
 
 if (YII_ENV_DEV) {
